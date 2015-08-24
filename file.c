@@ -3,19 +3,19 @@
 struct NumList
 {
     int num;
-    NumList* pNext;
+    struct NumList* pNext;
 };
-int main(char** argv,int argc)
+int main(int argc, char* argv[])
 {
     int i = 0;
-    NumList* pStart = malloc(struct NumList);
-    Numlist* pMid = pStart;
+    struct NumList* pStart = (struct NumList*)malloc(sizeof(struct NumList));
+    struct NumList* pMid = pStart;
     
     // init list
     for(i = 0; i < 5; i++)
     {
         pMid->num = i*2;
-        pMid->pNext = malloc(struct NumList);
+        pMid->pNext = (struct NumList*)malloc(sizeof(struct NumList));
         pMid = pMid->pNext;
     }
     pMid->pNext = NULL;
