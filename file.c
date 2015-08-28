@@ -35,9 +35,9 @@ int main(int argc, char* argv[])
     int i = 0;
     struct NumList* pStart = (struct NumList*)malloc(sizeof(struct NumList));
     struct NumList* pMid = pStart;
-
+    struct NumList* pNext = NULL;
     // init list
-    for(i = 0; i < num; i++)
+    for(i = 0; i < num - 1; i++)
     {
         pMid->num = i*2;
         pMid->pNext = (struct NumList*)malloc(sizeof(struct NumList));
@@ -51,21 +51,33 @@ int main(int argc, char* argv[])
     printList(pStart);
 
     // invert list
-    struct NumList* pNext = NULL;
-    pMid = pStart->pNext;
-    pNext = pMid->pNext;
-    pStart->pNext = NULL;
-    while(pNext->pNext != NULL)
+    if(num == 1)
     {
+        // not implement
+    }
+    else if(num == 2)
+    {
+        pMid = pStart->pNext;
+        pStart->pNext = NULL;
         pMid->pNext = pStart;
         pStart = pMid;
-        pMid = pNext;
-        pNext = pMid->pNext;
     }
-    pMid->pNext = pStart;
-    pNext->pNext = pMid;
-    pStart = pNext;
-
+    else if(num > 2)
+    {
+        pMid = pStart->pNext;
+        pNext = pMid->pNext;
+        pStart->pNext = NULL;
+        while(pNext->pNext != NULL)
+        {
+            pMid->pNext = pStart;
+            pStart = pMid;
+            pMid = pNext;
+            pNext = pMid->pNext;
+        }
+        pMid->pNext = pStart;
+        pNext->pNext = pMid;
+        pStart = pNext;
+    }
     // print List
     printf("\nList value after invert:\n");
     printList(pStart);
