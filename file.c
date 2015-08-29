@@ -78,6 +78,7 @@ int main(int argc, char* argv[])
         pNext->pNext = pMid;
         pStart = pNext;
     }
+
     // print List
     printf("\nList value after invert:\n");
     printList(pStart);
