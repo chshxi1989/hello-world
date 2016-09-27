@@ -1,6 +1,10 @@
-All:
-	gcc -c file.c -o file.o
-	gcc file.o -o file
+all: server client
+
+server: server.c
+	gcc -W -Wall -pthread -o server server.c
+
+client: client.c
+	gcc -W -Wall -pthread -o client client.c
 clean:
-	rm -f file.o
-	rm -f file
+	rm server
+	rm client
